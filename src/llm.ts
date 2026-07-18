@@ -25,5 +25,9 @@ export async function askNemotron(prompt: string): Promise<string> {
   }
 
   const data = await res.json()
-  return data.choices[0].message.content
+  const choice = data.choices?.[0]
+  if (!choice?.message?.content) {
+    throw new Error(`Unexpected API response: ${JSON.stringify(data).slice(0, 300)}`)
+  }
+  return choice.message.content
 }

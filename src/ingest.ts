@@ -27,7 +27,7 @@ function chunkContent(content: string, source: string): string[] {
 
   for (const line of lines) {
     if (line.startsWith('#')) {
-      if (current.length > 0) {
+      if (current.length > 1) {
         chunks.push(current.join('\n').trim())
       }
       current = [line]
@@ -35,7 +35,7 @@ function chunkContent(content: string, source: string): string[] {
       current.push(line.trim())
     }
   }
-  if (current.length > 0) {
+  if (current.length > 1) {
     chunks.push(current.join('\n').trim())
   }
 

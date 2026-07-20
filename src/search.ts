@@ -11,6 +11,16 @@ interface Chunk {
   source: string
 }
 
+let cachedChunks: Chunk[] | null = null
+
+export function loadChunks(): Chunk[] {
+  if (!cachedChunks) {
+    const raw = readFileSync(join(__dirname, '..', 'storage', 'chunks.json'), 'utf-8')
+    cachedChunks = JSON.parse(raw)
+  }
+  return cachedChunks!
+}
+
 function cosineSimilarity(a: number[], b: number[]): number {
   let dot = 0
   let normA = 0
@@ -27,8 +37,7 @@ export function search(
   queryEmbedding: number[],
   topK: number = 3
 ): { text: string; source: string }[] {
-  const raw = readFileSync(join(__dirname, '..', 'storage', 'chunks.json'), 'utf-8')
-  const chunks: Chunk[] = JSON.parse(raw)
+  const chunks = loadChunks()
 
   const scored = chunks.map(chunk => ({
     text: chunk.text,

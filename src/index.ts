@@ -14,13 +14,13 @@ async function main() {
   const queryEmbedding = await embed(question)
 
   console.log('Searching relevant chunks...')
-  const chunks = search(queryEmbedding, 3)
+  const chunks = search(queryEmbedding)
 
   console.log('Building prompt...')
   const prompt = buildPrompt(question, chunks)
 
   console.log('Asking Nemotron...\n')
-  const answer = await askNemotron(prompt)
+  const answer = await askNemotron([{ role: 'user', content: prompt }])
 
   console.log(answer)
 }

@@ -20,6 +20,7 @@ storage/      - generated chunks.json (gitignored)
 ## Commands
 - npm run ingest        - rebuild vector index from knowledge/
 - npm run ask -- "..."  - query the RAG pipeline
+- npm run chat          - interactive REPL with conversation history
 
 ## Conventions
 - ESM modules with .ts extensions

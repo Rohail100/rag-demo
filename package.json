@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "ingest": "tsx src/ingest.ts",
-    "ask": "tsx src/index.ts"
+    "ask": "tsx src/index.ts",
+    "chat": "tsx src/chat.ts"
   },
   "dependencies": {
     "@xenova/transformers": "^2.17.2",

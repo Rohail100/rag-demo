@@ -4,6 +4,7 @@ import { search } from './search'
 import { askNemotron } from './llm'
 import { SYSTEM_PROMPT, buildChatPrompt } from './prompt'
 
+/** REPL entry point: interactive loop with conversation history, per-turn context retrieval, /exit support */
 async function main() {
   const rl = createInterface({ input: process.stdin, output: process.stdout, prompt: '> ' })
 

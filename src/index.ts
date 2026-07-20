@@ -3,6 +3,7 @@ import { search } from './search'
 import { buildPrompt } from './prompt'
 import { askNemotron } from './llm'
 
+/** CLI entry point: read question from argv, embed, search, build prompt, query LLM, print answer */
 async function main() {
   const question = process.argv[2]
   if (!question) {

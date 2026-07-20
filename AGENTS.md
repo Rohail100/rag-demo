@@ -3,7 +3,7 @@
 ## Tech Stack
 - Node.js + TypeScript (ESM)
 - @xenova/transformers (local embeddings)
-- OpenRouter API (Nemotron LLM)
+- OpenRouter API (Nemotron 3 Super)
 - No framework dependencies (no LangChain)
 
 ## Structure
@@ -13,7 +13,7 @@ src/
   embed.ts    - Transformers.js wrapper (Xenova/all-MiniLM-L6-v2)
   search.ts   - cosine similarity, TopK=3
   prompt.ts   - prompt builder with context
-  llm.ts      - OpenRouter client (nvidia/nemotron-3-ultra-550b-a55b:free)
+  llm.ts      - OpenRouter client (nvidia/nemotron-3-super-120b-a12b:free)
   index.ts    - CLI entry point
 storage/      - generated chunks.json (gitignored)
 

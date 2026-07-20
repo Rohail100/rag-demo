@@ -13,6 +13,7 @@ interface Chunk {
 
 let cachedChunks: Chunk[] | null = null
 
+/** Load chunks from storage/chunks.json, caching them in memory after the first call */
 export function loadChunks(): Chunk[] {
   if (!cachedChunks) {
     const raw = readFileSync(join(__dirname, '..', 'storage', 'chunks.json'), 'utf-8')
@@ -21,6 +22,7 @@ export function loadChunks(): Chunk[] {
   return cachedChunks!
 }
 
+/** Compute cosine similarity between two equal-length vectors */
 function cosineSimilarity(a: number[], b: number[]): number {
   let dot = 0
   let normA = 0
@@ -33,6 +35,7 @@ function cosineSimilarity(a: number[], b: number[]): number {
   return dot / (Math.sqrt(normA) * Math.sqrt(normB))
 }
 
+/** Search cached chunks for the top-K most similar to the query embedding via cosine similarity */
 export function search(
   queryEmbedding: number[],
   topK: number = 3

@@ -9,7 +9,8 @@ No frameworks, no vector DB — just local embeddings + an LLM API call.
 cp .env.example .env   # add your OpenRouter API key
 npm install
 npm run ingest          # index knowledge/*.md
-npm run ask -- "Can I return sale items?"
+npm run ask -- "Can I return sale items?"   # single query
+npm run chat                                  # interactive REPL
 ```
 
 ## How It Works
@@ -33,7 +34,7 @@ knowledge/*.md
   prompt.ts  ── build prompt with retrieved context
     │
     ▼
-  llm.ts     ── OpenRouter → Nemotron 3 Ultra (free)
+  llm.ts     ── OpenRouter → Nemotron 3 Super (free)
     │
     ▼
   answer
@@ -52,6 +53,7 @@ knowledge/*.md
 │   ├── embed.ts         # Local embedding model
 │   ├── search.ts        # Cosine similarity search
 │   ├── prompt.ts        # Prompt builder
+│   ├── chat.ts          # Interactive REPL
 │   ├── llm.ts           # OpenRouter API client
 │   └── index.ts         # CLI entry point
 ├── storage/             # Generated chunks.json (gitignored)
@@ -69,6 +71,7 @@ knowledge/*.md
 |---|---|
 | `npm run ingest` | Rebuild vector index from knowledge/ |
 | `npm run ask -- "..."` | Query the RAG pipeline |
+| `npm run chat` | Interactive REPL with conversation history |
 
 ## Test Questions
 

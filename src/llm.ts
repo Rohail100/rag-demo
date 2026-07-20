@@ -2,6 +2,7 @@ import 'dotenv/config'
 
 const API_KEY = process.env.OPENROUTER_API_KEY
 
+/** Send a message array to Nemotron 3 Super via OpenRouter and return the assistant's reply */
 export async function askNemotron(
   messages: { role: string; content: string }[]
 ): Promise<string> {

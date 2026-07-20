@@ -12,6 +12,7 @@ interface Chunk {
   source: string
 }
 
+/** Read all .md files from a directory and return their contents with filenames */
 function readMarkdownFiles(dir: string): { filename: string; content: string }[] {
   const files = readdirSync(dir).filter(f => extname(f) === '.md')
   return files.map(f => ({
@@ -20,6 +21,7 @@ function readMarkdownFiles(dir: string): { filename: string; content: string }[]
   }))
 }
 
+/** Split markdown content into chunks at ## heading boundaries. Skips standalone headings with no body text. */
 function chunkContent(content: string, source: string): string[] {
   const lines = content.split('\n')
   const chunks: string[] = []
@@ -42,6 +44,7 @@ function chunkContent(content: string, source: string): string[] {
   return chunks.filter(c => c.length > 0)
 }
 
+/** Orchestrate the ingestion pipeline: read .md files → chunk → embed → save to storage/chunks.json */
 async function main() {
   const knowledgeDir = join(__dirname, '..', 'knowledge')
   const storageDir = join(__dirname, '..', 'storage')
